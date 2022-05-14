@@ -1,2 +1,1 @@
-# mdish-api
-https://my-dish-app.herokuapp.com/
+https://mydish-application-api.herokuapp.com/
