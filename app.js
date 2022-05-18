@@ -1,14 +1,20 @@
 const http = require("http");
-var createError = require('http-errors')
+var createError = require('http-errors');
 require("dotenv").config();
 var express = require('express');
+const fs = require("fs")
 var path = require('path');
 const cors = require('cors');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const https = require("https");
 require("./config/database").connect();
 var indexRouter = require('./routes/index');
 var app = express();
+const optionsHttps = {
+
+
+}
 const server = http.createServer(app);
 const jsonErrorHandler = async (err, req, res, next) => {
   res.status(500).json({ error: err });
@@ -25,7 +31,7 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
   next();
 });
- 
+
 const corsOptions = {
   exposedHeaders: 'Content-Disposition',
 };
@@ -39,7 +45,7 @@ app.use('/image', express.static(path.join(__dirname, 'uploads')))
 // catch 404 and forward to error handler
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   //res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
