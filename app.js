@@ -12,10 +12,10 @@ require("./config/database").connect();
 var indexRouter = require('./routes/index');
 var app = express();
 const optionsHttps = {
-
-
+  key:'',
+  cert: ''
 }
-const server = http.createServer(app);
+const server = https.createServer(optionsHttps, app);
 const jsonErrorHandler = async (err, req, res, next) => {
   res.status(500).json({ error: err });
 }
