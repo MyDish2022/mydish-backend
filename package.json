@@ -6,10 +6,11 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "aws": "(sudo npm start > /dev/null &)",
+    "launchApp": "(sudo npm start > /dev/null &)",
     "runningProcess": "ps -e|grep node",
     "stop": "killall -9 node",
-    "format": "prettier --write \"controllers/**/*.js\" \"services/**/*.js\" \"routes/**/*.js\" \"helpers/**/*.js\" \"models/**/*.js\" \"middlewares/**/*.js\" \"errors/**/*.js\""
+    "format": "prettier --write \"controllers/**/*.js\" \"services/**/*.js\" \"routes/**/*.js\" \"helpers/**/*.js\" \"models/**/*.js\" \"middlewares/**/*.js\" \"errors/**/*.js\"",
+    "pm": "pm2 start app.js"
   },
   "dependencies": {
     "aws-sdk": "^2.1009.0",
