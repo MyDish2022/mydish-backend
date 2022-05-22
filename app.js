@@ -5,6 +5,7 @@ var express = require('express');
 const fs = require("fs")
 var path = require('path');
 const cors = require('cors');
+const initializeCron = require('./utils/cron');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const https = require("https");
@@ -43,7 +44,7 @@ app.set('view engine', 'jade');
 app.use('/', indexRouter);
 app.use('/image', express.static(path.join(__dirname, 'uploads')))
 // catch 404 and forward to error handler
-
+initializeCron();
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
