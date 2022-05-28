@@ -20,6 +20,24 @@ class PlatService {
       throw error;
     }
   }
+  async addPlatRestaurant(body, restaurant) {
+    try { 
+      let platData = {};
+      platData.name = body.nom;
+      platData.price = parseInt(body.prix);
+      platData.options = [{name: body.option, price: parseInt(body.prix_option)}];
+      platData.description = body.description;
+      platData.restaurantId = restaurant._id
+      platData.imageUrl = body.image[0].thumbUrl
+      const registeredPlat = new PlatModel(platData);
+      console.log(registeredPlat)
+      await registeredPlat.save();
+      return registeredPlat;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
   async getAllPlats({ section }) {
     let filterQuery = {};
     if (section) filterQuery = { ...filterQuery, type: section };

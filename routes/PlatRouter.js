@@ -6,11 +6,13 @@ const {
   removePlat,
   updatePlat,
   getAllPlats,
+  addPlatRestaurant,
   getAllPlatsByRestaurant,
 } = require("../controllers/PlatController");
 const { authorize, AUTH_ROLES } = require("../middlewares/auth");
-const { ADMIN, USER } = AUTH_ROLES;
+const { ADMIN, USER, RESTAURANT } = AUTH_ROLES;
 router.post("/addPlat", authorize(ADMIN), catchMiddleware(addPlat));
+router.post("/addPlatRestaurant", authorize(RESTAURANT), catchMiddleware(addPlatRestaurant));
 router.delete(
   "/removePlat/:platId",
   authorize(ADMIN),

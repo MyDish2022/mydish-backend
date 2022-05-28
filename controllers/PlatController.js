@@ -50,6 +50,18 @@ const addPlat = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const addPlatRestaurant = (req, res, next) => {
+  new PlatService()
+    .addPlatRestaurant(req.body, req.restaurant)
+    .then((info) =>
+      res.status(200).json(success("PLAT_CREATE", info, res.statusCode))
+    )
+    .catch((err) =>
+      res
+        .status(err.code || 500)
+        .json(error(err.status, err.code) || "internal error")
+    );
+};
 const updatePlat = (req, res, next) => {
   new PlatService()
     .updatePlat(req.body, req.params)
@@ -69,4 +81,5 @@ module.exports = {
   updatePlat,
   getAllPlats,
   getAllPlatsByRestaurant,
+  addPlatRestaurant,
 };
