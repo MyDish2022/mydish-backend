@@ -75,8 +75,9 @@ class PromoCodeService {
         _id: promoCodeId,
       }).lean();
       if (!promoCode) throw new NotFoundError("promo code not found!");
-      await PromoCodeModel.findOneAndDelete({ _id: promoCodeId });
-      return "code archivé";
+      await PromoCodeModel.findOneAndUpdate({ _id: promoCodeId }, {status: "archived"});
+      const returnedPromoCodes = await PromoCodeModel.find({}).lean();
+      return returnedPromoCodes;
     } catch (error) {
       console.log(error);
       throw error;
