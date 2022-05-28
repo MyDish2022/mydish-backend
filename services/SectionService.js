@@ -43,6 +43,17 @@ class SectionService {
       throw error;
     }
   }
+  async removeSection({ sectionId }) {
+    try {
+      let section = await SectionModel.findOne({ _id: sectionId }).lean();
+      if (!section) throw new NotFoundError();
+      await SectionModel.findByIdAndRemove({ _id: sectionId }).lean();
+      return { info: "Section removed" };
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
   async getAllSections() {
     try {
       const sections = await SectionModel.find({}).lean();

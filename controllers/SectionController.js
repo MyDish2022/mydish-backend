@@ -12,6 +12,18 @@ const sectionAdd = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const removeSection = (req, res, next) => {
+  new SectionService()
+    .removeSection(req.params)
+    .then((info) =>
+      res.status(200).json(success("REMOVE_SECTION", info, res.statusCode))
+    )
+    .catch((err) =>
+      res
+        .status(err.code || 500)
+        .json(error(err.status, err.code) || "internal error")
+    );
+};
 const sectionEdit = (req, res, next) => {
   new SectionService()
     .sectionEdit(req.body)
@@ -40,4 +52,5 @@ module.exports = {
   sectionAdd,
   sectionEdit,
   getAllSections,
+  removeSection,
 };
