@@ -30,7 +30,6 @@ class PlatService {
       platData.restaurantId = restaurant._id
       platData.imageUrl = body.image[0].thumbUrl
       const registeredPlat = new PlatModel(platData);
-      console.log(registeredPlat)
       await registeredPlat.save();
       return registeredPlat;
     } catch (error) {

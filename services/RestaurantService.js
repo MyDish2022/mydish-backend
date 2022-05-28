@@ -507,6 +507,7 @@ class RestaurantService {
         let boissons = await BoissonModel.find({}).lean();
         items = {
           ...items,
+          all: [],
           entrée: null,
           deserts: null,
           plats: null,
@@ -519,6 +520,7 @@ class RestaurantService {
         }, Object.create(null));
         for (const key in restaurantProducts) {
           items[key] = restaurantProducts[key];
+          items["all"] = items["all"].concat(restaurantProducts[key]) 
         }
       }
       return items;
