@@ -6,6 +6,10 @@ var ProductSchema = new mongoose.Schema(
   {
     name: { type: String, required: false },
     disponibilite: { type: String, required: false },
+    disponibiliteOnDate: {
+      startDate: {type: String, required: false},
+      endDate: {type: String, required: false}
+    },
     discount: { type: Number, required: false },
     price: { type: Number, required: false },
     restaurantId: {

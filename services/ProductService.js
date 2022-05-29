@@ -11,11 +11,15 @@ const {
 const UserModel = require("../models/UserModel");
 const MenuModel = require("../models/MenuModel");
 class ProductService {
-  constructor() {}
+  constructor() { }
   async addMenu(body, restaurantId) {
     try {
-      console.log(restaurantId);
-      let data = {};
+      let data = {
+        disponibiliteOnDate: {
+          startDate: undefined,
+          endDate: undefined
+        }
+      };
       if (body.nom) data.name = body.nom;
       if (body.prix) data.price = parseInt(body.prix);
 
@@ -32,9 +36,13 @@ class ProductService {
       if (body.service) data.service = body.service;
       if (body.disponibilite) data.disponibilite = body.disponibilite;
       if (body.jours) data.jours = body.jours;
+      if (body.disponibiliteOnDate && body.disponibiliteOnDate.startDate && body.disponibiliteOnDate.endDate) {
+        data.disponibiliteOnDate.startDate = body.disponibiliteOnDate.startDate
+        data.disponibiliteOnDate.endDate = body.disponibiliteOnDate.endDate
+      }
       const addedProduct = new MenuModel(data);
-      const registeredMenu = await addedProduct.save();
-      return { Menu: registeredMenu };
+      const returnedMenu = await addedProduct.save()
+      return await returnedMenu.populate('plats boissons restaurantId');
     } catch (error) {
       console.log(error);
       throw error;
