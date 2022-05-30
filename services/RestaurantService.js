@@ -432,6 +432,9 @@ class RestaurantService {
           "menusJours",
           "name description ingredients diatetic discount price imageUrl calories category type orders globalRating"
         )
+        .populate(
+          "services"
+        )
         .lean();
       let isFounded = user.favoriteRestaurants.some(
         (element) => element._id.toString() === restaurant._id.toString()
