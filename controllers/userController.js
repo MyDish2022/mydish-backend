@@ -31,6 +31,18 @@ const registerUser = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const addMyRestaurant = (req, res, next) => {
+  new UserService()
+    .addMyRestaurant(req.body, req.user)
+    .then((info) =>
+      res.status(200).json(success("ADD_MY_RESTAURANT", info, res.statusCode))
+    )
+    .catch((err) =>
+      res
+        .status(err.code || 500)
+        .json(error(err.status, err.code) || "internal error")
+    );
+};
 const changePassword = (req, res, next) => {
   new UserService()
     .changePassword(req.body, req.user)
@@ -298,4 +310,5 @@ module.exports = {
   unbookmarkAllPlat,
   unbookmarkAllRestaurants,
   getNearByRestaurants,
+  addMyRestaurant
 };

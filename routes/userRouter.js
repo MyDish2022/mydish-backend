@@ -24,6 +24,7 @@ const {
   confirmSms,
   forgetPasswordSms,
   changePasswordByEmail,
+  addMyRestaurant,
   unbookmark,
 } = require("../controllers/userController");
 const { getMyRatingList } = require("../controllers/RatingController");
@@ -94,5 +95,6 @@ router.get(
   authorize(USER),
   catchMiddleware(getNearByRestaurants)
 );
+router.post("/addMyRestaurant", authorize(USER), catchMiddleware(addMyRestaurant));
 router.get("/getMyRates", authorize(USER), catchMiddleware(getMyRatingList));
 module.exports = router;
