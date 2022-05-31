@@ -21,14 +21,16 @@ class PlatService {
     }
   }
   async addPlatRestaurant(body, restaurant) {
-    try { 
+    try {
       let platData = {};
       platData.name = body.nom;
       platData.price = parseInt(body.prix);
-      platData.options = [{name: body.option, price: parseInt(body.prix_option)}];
+      platData.options = [
+        { name: body.option, price: parseInt(body.prix_option) },
+      ];
       platData.description = body.description;
-      platData.restaurantId = restaurant._id
-      platData.imageUrl = body.image[0].thumbUrl
+      platData.restaurantId = restaurant._id;
+      platData.imageUrl = body.image[0].thumbUrl;
       const registeredPlat = new PlatModel(platData);
       await registeredPlat.save();
       return registeredPlat;

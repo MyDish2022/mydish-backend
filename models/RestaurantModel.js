@@ -13,11 +13,13 @@ var RestaurantSchema = new mongoose.Schema(
     description: { type: String, required: true },
     imageUrl: { type: String, required: true },
     category: { type: String, required: true }, // Cantine, Particulier, Livraison, Reservation
-    services: [{
-      type: Schema.ObjectId,
-      ref: "Service",
-      required: false,
-    }], // cet attribut ne sera pas utilisé ['DELIVERY', 'RESERVATION']
+    services: [
+      {
+        type: Schema.ObjectId,
+        ref: "Service",
+        required: false,
+      },
+    ], // cet attribut ne sera pas utilisé ['DELIVERY', 'RESERVATION']
     budget: { type: Number, required: false },
     type: { type: String, required: true },
     coords: { type: Object, required: false }, // wont be used

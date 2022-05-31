@@ -40,5 +40,15 @@ class NoteService {
       throw error;
     }
   }
+  async deleteNoteById({ noteId }) {
+    try {
+      const fetchNote = await NoteModel.findOne({ _id: noteId }).lean();
+      if (!fetchNote) throw new NotFoundError("Note id does not exist !!!");
+      await NoteModel.findByIdAndDelete(noteId);
+      return "note deleted successfully!";
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 module.exports = NoteService;

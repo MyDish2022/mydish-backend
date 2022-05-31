@@ -15,7 +15,7 @@ const { AUTH_ROLES } = require("../middlewares/auth");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 class RestaurantService {
-  constructor() { }
+  constructor() {}
 
   async Add(body) {
     try {
@@ -274,7 +274,7 @@ class RestaurantService {
       </style></head><body style="background-color:#fff;margin:0;padding:0;-webkit-text-size-adjust:none;text-size-adjust:none"><table border="0" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#fff" width="100%"><tbody><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-image:url(images/bg_hero_illo.jpg);background-repeat:repeat" width="100%"><tbody><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;color:#000;width:700px" width="700"><tbody><tr><td class="column column-1" style="mso-table-lspace:0;mso-table-rspace:0;font-weight:400;text-align:left;vertical-align:top;padding-top:60px;padding-bottom:0;border-top:0;border-right:0;border-bottom:0;border-left:0" width="100%"><table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tr><td style="width:100%;padding-right:0;padding-left:0"><div align="center" style="line-height:10px"><img alt="Image" src="cid:logo@logo" style="display:block;height:auto;border:0;width:140px;max-width:100%" title="Image" width="140"/></div></td></tr></table><table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;word-break:break-word" width="100%"><tr><td style="padding-bottom:35px;padding-left:10px;padding-right:10px;padding-top:10px"><div style="font-family:Arial,sans-serif"><div class="txtTinyMce-wrapper" style="font-family:Chivo,Arial,Helvetica,sans-serif;font-size:12px;mso-line-height-alt:14.399999999999999px;color:#5beda6;line-height:1.2"><p style="margin:0;text-align:center;font-size:12px"><span style="font-size:12px;"><span style="font-size:88px;"><strong>My dish </strong></span></span></p></div></div></td></tr></table><table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tr><td style="width:100%;padding-right:0;padding-left:0"><div align="center" style="line-height:10px"><img alt="Image" src="cid:illo_hero_transparent" style="display:block;height:auto;border:0;width:587px;max-width:100%" title="Image" width="587"/></div></td></tr></table></td></tr></tbody></table></td></tr></tbody></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tbody><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;color:#000;width:700px" width="700"><tbody><tr><td class="column column-1" style="mso-table-lspace:0;mso-table-rspace:0;font-weight:400;text-align:left;vertical-align:top;padding-left:25px;padding-right:25px;padding-top:25px;padding-bottom:25px;border-top:0;border-right:0;border-bottom:0;border-left:0" width="100%"><table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;word-break:break-word" width="100%"><tr><td style="padding-bottom:10px;padding-left:40px;padding-right:40px;padding-top:10px"><div style="font-family:Tahoma,Verdana,sans-serif"><div class="txtTinyMce-wrapper" style="font-size:12px;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif;mso-line-height-alt:18px;color:#555;line-height:1.5"><p style="margin:0;font-size:14px;text-align:center;mso-line-height-alt:27px"><span style="font-size:18px;">Merci d'uiliser le service du my dish</span></p></div></div></td></tr></table></td></tr></tbody></table></td></tr></tbody></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-3" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#9ef2c3" width="100%"><tbody><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;color:#333;width:700px" width="700"><tbody><tr><td class="column column-1" style="mso-table-lspace:0;mso-table-rspace:0;font-weight:400;text-align:left;vertical-align:top;border-top:0;border-right:0;border-bottom:0;border-left:0" width="50%"><table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tr><td style="padding-right:20px;width:100%;padding-left:0;padding-top:5px;padding-bottom:45px"><div align="right" style="line-height:10px"><img alt="Image" src="cid:gplay" style="display:block;height:auto;border:0;width:122px;max-width:100%" title="Image" width="122"/></div></td></tr></table></td><td class="column column-2" style="mso-table-lspace:0;mso-table-rspace:0;font-weight:400;text-align:left;vertical-align:top;border-top:0;border-right:0;border-bottom:0;border-left:0" width="50%"><table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tr><td style="padding-left:20px;width:100%;padding-right:0;padding-top:5px;padding-bottom:5px"><div style="line-height:10px"><img alt="Image" src="cid:appstore" style="display:block;height:auto;border:0;width:122px;max-width:100%" title="Image" width="122"/></div></td></tr></table></td></tr></tbody></table></td></tr></tbody></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-4" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#fff" width="100%"><tbody><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;color:#000;width:700px" width="700"><tbody><tr><td class="column column-1" style="mso-table-lspace:0;mso-table-rspace:0;font-weight:400;text-align:left;vertical-align:top;padding-top:40px;padding-bottom:40px;border-top:0;border-right:0;border-bottom:0;border-left:0" width="100%"><table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tr><td style="padding-bottom:15px;width:100%;padding-right:0;padding-left:0"><div align="center" style="line-height:10px"><img alt="Image" src="cid:logox" style="display:block;height:auto;border:0;width:148px;max-width:100%" title="Image" width="148"/></div></td></tr></table><table border="0" cellpadding="10" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;word-break:break-word" width="100%"><tr><td><div style="font-family:sans-serif"><div class="txtTinyMce-wrapper" style="font-size:12px;mso-line-height-alt:14.399999999999999px;color:#5beda6;line-height:1.2;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif"><p style="margin:0;font-size:14px;text-align:center"><span style="font-size:16px;"><strong>My dish <a href=${process.env.APP_REACT}/ForgetPassword?email=${email}>reset password link</a></strong></span></p><p style="margin:0;font-size:14px;text-align:center"><span style="color:#333333;font-size:16px;">Best My dish support team</span></p></div></div></td></tr></table><table border="0" cellpadding="10" cellspacing="0" class="social_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" class="social-table" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="148px"><tr><td style="padding:0 5px 0 0"><a href="https://twitter.com/" target="_blank"><img alt="Twitter" height="32" src="cid:twitter2x" style="display:block;height:auto;border:0" title="Twitter" width="32"/></a></td><td style="padding:0 5px 0 0"><a href="https://plus.google.com/" target="_blank"><img alt="Google+" height="32" src="cid:googleplus2x" style="display:block;height:auto;border:0" title="Google+" width="32"/></a></td><td style="padding:0 5px 0 0"><a href="https://www.youtube.com/" target="_blank"><img alt="YouTube" height="32" src="cid:youtube2x" style="display:block;height:auto;border:0" title="YouTube" width="32"/></a></td><td style="padding:0 5px 0 0"><a href="https://www.facebook.com/" target="_blank"><img alt="Facebook" height="32" src="cid:facebook2x" style="display:block;height:auto;border:0" title="Facebook" width="32"/>
       </a></td></tr></table></td></tr></table></td></tr></tbody></table></td></tr></tbody></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-5" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f4" width="100%"><tbody><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;color:#000;width:700px" width="700"><tbody><tr><td class="column column-1" style="mso-table-lspace:0;mso-table-rspace:0;font-weight:400;text-align:left;vertical-align:top;padding-top:25px;padding-bottom:25px;border-top:0;border-right:0;border-bottom:0;border-left:0" width="100%"><table border="0" cellpadding="10" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;word-break:break-word" width="100%"><tr><td><div style="font-family:sans-serif"><div class="txtTinyMce-wrapper" style="font-size:12px;mso-line-height-alt:14.399999999999999px;color:#555;line-height:1.2;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif"><p style="margin:0;font-size:12px;text-align:center">All rights reserved © 2018 /  The Team</p></div></div></td></tr></table></td></tr></tbody></table></td></tr></tbody></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-6" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tbody>
       <tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;color:#000;width:700px" width="700"><tbody><tr><td class="column column-1" style="mso-table-lspace:0;mso-table-rspace:0;font-weight:400;text-align:left;vertical-align:top;padding-top:5px;padding-bottom:5px;border-top:0;border-right:0;border-bottom:0;border-left:0" width="100%"><table border="0" cellpadding="0" cellspacing="0" class="icons_block" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tr><td style="vertical-align:middle;color:#9d9d9d;font-family:inherit;font-size:15px;padding-bottom:5px;padding-top:5px;text-align:center"><table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0" width="100%"><tr><td style="vertical-align:middle;text-align:center">
-      <!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]--><!--[if !vml]><!--><table cellpadding="0" cellspacing="0" class="icons-inner" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;display:inline-block;margin-right:-4px;padding-left:0;padding-right:0"><!--<![endif]--><tr><td style="vertical-align:middle;text-align:center;padding-top:5px;padding-bottom:5px;padding-left:5px;padding-right:6px"><a href="https://www.designedwithbee.com/" style="text-decoration: none;" target="_blank"><img align="center" alt="Designed with BEE" class="icon" height="32" src="cid:bee" style="display:block;height:auto;margin:0 auto;border:0" width="34"/></a></td><td style="font-family:Lato,Tahoma,Verdana,Segoe,sans-serif;font-size:15px;color:#9d9d9d;vertical-align:middle;letter-spacing:undefined;text-align:center"></td></tr></table></td></tr></table></td></tr></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><!-- End --></body></html>`
+      <!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]--><!--[if !vml]><!--><table cellpadding="0" cellspacing="0" class="icons-inner" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;display:inline-block;margin-right:-4px;padding-left:0;padding-right:0"><!--<![endif]--><tr><td style="vertical-align:middle;text-align:center;padding-top:5px;padding-bottom:5px;padding-left:5px;padding-right:6px"><a href="https://www.designedwithbee.com/" style="text-decoration: none;" target="_blank"><img align="center" alt="Designed with BEE" class="icon" height="32" src="cid:bee" style="display:block;height:auto;margin:0 auto;border:0" width="34"/></a></td><td style="font-family:Lato,Tahoma,Verdana,Segoe,sans-serif;font-size:15px;color:#9d9d9d;vertical-align:middle;letter-spacing:undefined;text-align:center"></td></tr></table></td></tr></table></td></tr></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><!-- End --></body></html>`;
       let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
@@ -291,50 +291,58 @@ class RestaurantService {
         to: "mohamed.derbali@esprit.tn", // list of receivers
         subject: "Lien reset password", // Subject line
         html: html, // html body
-        attachments: [{
-          filename: 'logo.png',
-          path: `${__dirname}/../utils/mailTemplate/logo.png`,
-          cid: 'logo@logo'
-        },
-        {
-          filename: 'illo_hero_transparent.png',
-          path: `${__dirname}/../utils/mailTemplate/illo_hero_transparent.png`,
-          cid: 'illo_hero_transparent'
-        },
-        {
-          filename: 'gplay.gif',
-          path: `${__dirname}/../utils/mailTemplate/gplay.gif`,
-          cid: 'gplay'
-        },
-        {
-          filename: 'appstore.png',
-          path: `${__dirname}/../utils/mailTemplate/appstore.png`,
-          cid: 'appstore'
-        }, {
-          filename: 'logo.png',
-          path: `${__dirname}/../utils/mailTemplate/logo.png`,
-          cid: 'logox'
-        }, {
-          filename: 'twitter2x.png',
-          path: `${__dirname}/../utils/mailTemplate/twitter2x.png`,
-          cid: 'twitter2x'
-        }, {
-          filename: 'googleplus2x.png',
-          path: `${__dirname}/../utils/mailTemplate/googleplus2x.png`,
-          cid: 'googleplus2x'
-        }, {
-          filename: 'youtube2x.png',
-          path: `${__dirname}/../utils/mailTemplate/youtube2x.png`,
-          cid: 'youtube2x'
-        }, {
-          filename: 'facebook2x.png',
-          path: `${__dirname}/../utils/mailTemplate/facebook2x.png`,
-          cid: 'facebook2x'
-        }, {
-          filename: 'bee.png',
-          path: `${__dirname}/../utils/mailTemplate/bee.png`,
-          cid: 'bee'
-        }]
+        attachments: [
+          {
+            filename: "logo.png",
+            path: `${__dirname}/../utils/mailTemplate/logo.png`,
+            cid: "logo@logo",
+          },
+          {
+            filename: "illo_hero_transparent.png",
+            path: `${__dirname}/../utils/mailTemplate/illo_hero_transparent.png`,
+            cid: "illo_hero_transparent",
+          },
+          {
+            filename: "gplay.gif",
+            path: `${__dirname}/../utils/mailTemplate/gplay.gif`,
+            cid: "gplay",
+          },
+          {
+            filename: "appstore.png",
+            path: `${__dirname}/../utils/mailTemplate/appstore.png`,
+            cid: "appstore",
+          },
+          {
+            filename: "logo.png",
+            path: `${__dirname}/../utils/mailTemplate/logo.png`,
+            cid: "logox",
+          },
+          {
+            filename: "twitter2x.png",
+            path: `${__dirname}/../utils/mailTemplate/twitter2x.png`,
+            cid: "twitter2x",
+          },
+          {
+            filename: "googleplus2x.png",
+            path: `${__dirname}/../utils/mailTemplate/googleplus2x.png`,
+            cid: "googleplus2x",
+          },
+          {
+            filename: "youtube2x.png",
+            path: `${__dirname}/../utils/mailTemplate/youtube2x.png`,
+            cid: "youtube2x",
+          },
+          {
+            filename: "facebook2x.png",
+            path: `${__dirname}/../utils/mailTemplate/facebook2x.png`,
+            cid: "facebook2x",
+          },
+          {
+            filename: "bee.png",
+            path: `${__dirname}/../utils/mailTemplate/bee.png`,
+            cid: "bee",
+          },
+        ],
       });
       return `Message sent: %s ${info.messageId}`;
     } catch (error) {
@@ -432,9 +440,7 @@ class RestaurantService {
           "menusJours",
           "name description ingredients diatetic discount price imageUrl calories category type orders globalRating"
         )
-        .populate(
-          "services"
-        )
+        .populate("services")
         .lean();
       let isFounded = user.favoriteRestaurants.some(
         (element) => element._id.toString() === restaurant._id.toString()
@@ -523,7 +529,7 @@ class RestaurantService {
         }, Object.create(null));
         for (const key in restaurantProducts) {
           items[key] = restaurantProducts[key];
-          items["all"] = items["all"].concat(restaurantProducts[key]) 
+          items["all"] = items["all"].concat(restaurantProducts[key]);
         }
       }
       return items;

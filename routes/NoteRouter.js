@@ -7,6 +7,7 @@ const {
   addNoteToService,
   getNoteByServiceId,
   getAllNotes,
+  deleteNoteById,
 } = require("../controllers/NoteController");
 router.post(
   "/addNoteToService",
@@ -22,5 +23,10 @@ router.get(
   "/getAllNotes",
   authorize(ADMIN, RESTAURANT),
   catchMiddleware(getAllNotes)
+);
+router.delete(
+  "/deleteNoteById/:noteId",
+  authorize(RESTAURANT),
+  catchMiddleware(deleteNoteById)
 );
 module.exports = router;

@@ -297,6 +297,9 @@ const getNearByRestaurants = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const contactMydish = (req, res, next) => {
+  res.status(200).json("21121");
+};
 module.exports = {
   profile,
   forgetPasswordSms,
@@ -323,5 +326,6 @@ module.exports = {
   unbookmarkAllRestaurants,
   getNearByRestaurants,
   addMyRestaurant,
-  verifyPassword
+  verifyPassword,
+  contactMydish,
 };

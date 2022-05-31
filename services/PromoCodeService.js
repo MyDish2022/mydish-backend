@@ -75,8 +75,13 @@ class PromoCodeService {
         _id: promoCodeId,
       }).lean();
       if (!promoCode) throw new NotFoundError("promo code not found!");
-      await PromoCodeModel.findOneAndUpdate({ _id: promoCodeId }, {status: "archived"});
-      const returnedPromoCodes = await PromoCodeModel.find({}).populate("service").lean();
+      await PromoCodeModel.findOneAndUpdate(
+        { _id: promoCodeId },
+        { status: "archived" }
+      );
+      const returnedPromoCodes = await PromoCodeModel.find({})
+        .populate("service")
+        .lean();
       return returnedPromoCodes;
     } catch (error) {
       console.log(error);

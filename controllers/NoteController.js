@@ -36,8 +36,21 @@ const getAllNotes = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const deleteNoteById = (req, res, next) => {
+  new NoteService()
+    .deleteNoteById(req.params)
+    .then((info) =>
+      res.status(200).json(success("REMOVE_NOTE", info, res.statusCode))
+    )
+    .catch((err) =>
+      res
+        .status(err.code || 500)
+        .json(error(err.status, err.code) || "internal error")
+    );
+};
 module.exports = {
   addNoteToService,
   getNoteByServiceId,
+  deleteNoteById,
   getAllNotes,
 };
