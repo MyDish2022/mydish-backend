@@ -251,7 +251,7 @@ class UserService {
         user.password
       );
       if (!verifyIfPasswordTheSame)
-        throw new BadRequestError("password wrong!!");
+        throw new NotFoundError("password wrong!!");
       return "access granted!";
     } catch (err) {
       throw err;
