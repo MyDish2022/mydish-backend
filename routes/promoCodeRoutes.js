@@ -25,7 +25,7 @@ router.get(
   authorize(USER),
   catchMiddleware(getMyPromoCodes)
 );
-router.put(
+router.patch(
   "/updateInfoPromocode/:promoCodeId",
   catchMiddleware(updatePromoCode)
 );
