@@ -26,6 +26,7 @@ const {
   changePasswordByEmail,
   addMyRestaurant,
   unbookmark,
+  verifyPassword
 } = require("../controllers/userController");
 const { getMyRatingList } = require("../controllers/RatingController");
 const catchMiddleware = require("../middlewares/api");
@@ -97,4 +98,5 @@ router.get(
 );
 router.post("/addMyRestaurant", authorize(USER), catchMiddleware(addMyRestaurant));
 router.get("/getMyRates", authorize(USER), catchMiddleware(getMyRatingList));
+router.post("/verifyPassword", authorize(USER), catchMiddleware(verifyPassword));
 module.exports = router;

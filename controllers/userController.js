@@ -19,6 +19,18 @@ const verifyEmail = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const verifyPassword = (req, res, next) => {
+  new UserService()
+    .verifyPassword(req.body, req.user)
+    .then((info) =>
+      res.status(200).json(success("VERIFY_PASSWORD", info, res.statusCode))
+    )
+    .catch((err) =>
+      res
+        .status(err.code || 500)
+        .json(error(err.status, err.code) || "internal error")
+    );
+};
 const registerUser = (req, res, next) => {
   new UserService()
     .Register(req.body)
@@ -310,5 +322,6 @@ module.exports = {
   unbookmarkAllPlat,
   unbookmarkAllRestaurants,
   getNearByRestaurants,
-  addMyRestaurant
+  addMyRestaurant,
+  verifyPassword
 };

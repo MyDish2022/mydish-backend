@@ -243,6 +243,29 @@ class UserService {
       throw new error();
     }
   }
+  async verifyPassword({password}, user) {
+    try{
+      if (!user) throw new AuthorizationError("user need to be connected!!");
+      const verifyIfPasswordTheSame = await bcrypt.compare(password.toString(), user.password);
+      if(!verifyIfPasswordTheSame) throw new BadRequestError("password wrong!!");
+      return "access granted!";
+    }catch(err){
+      throw err;
+    }
+    
+  }
+  async confirmSms({ phone }) {
+    try {
+      const generatedCode = Math.floor(1000 + Math.random() * 9000);
+      new TwilioService().sendSms(
+        `Votre code du confirmation: ${generatedCode}`,
+        phone.replace("+33", "")
+      );
+      return generatedCode;
+    } catch (error) {
+      throw new error();
+    }
+  }
   async forgetPasswordSms({ email }) {
     try {
       const generatedCode = Math.floor(1000 + Math.random() * 9000);
