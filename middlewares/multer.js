@@ -1,13 +1,13 @@
-const multer = require("multer"),
-  uuidv4 = require("uuid/v4");
-const DIR = "../uploads/";
+const multer = require("multer");
+const {v4} = require("uuid/v4");
+const DIR = "./uploads/";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, DIR);
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.toLowerCase().split(" ").join("-");
-    cb(null, uuidv4() + "-" + fileName);
+    cb(null, v4() + "-" + fileName);
   },
 });
 const upload = multer({

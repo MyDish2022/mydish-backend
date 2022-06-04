@@ -16,7 +16,7 @@ const optionsHttps = {
   key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
   cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
 }
-const server = http.createServer(app);
+const server = http.createServer(optionsHttps, app);
 const jsonErrorHandler = async (err, req, res, next) => {
   res.status(500).json({ error: err });
 }
