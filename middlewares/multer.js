@@ -1,5 +1,5 @@
 const multer = require("multer");
-var uuid = require('uuid');
+var uuid = require("uuid");
 const DIR = "./uploads/";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

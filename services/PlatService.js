@@ -10,7 +10,6 @@ class PlatService {
   constructor() {}
   async addPlat(body) {
     try {
-      
       const checkIfPlatExist = await PlatModel.findOne(body).lean();
       if (checkIfPlatExist) throw new AlreadyExistError("Plat already exist!");
       const registeredPlat = new PlatModel(body);
@@ -22,7 +21,7 @@ class PlatService {
     }
   }
   async addPlatRestaurant(body, restaurant) {
-    console.log(body)
+    console.log(body);
     try {
       let platData = {};
       platData.name = body.nom;

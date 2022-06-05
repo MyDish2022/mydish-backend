@@ -15,6 +15,20 @@ class RatingService {
       throw error;
     }
   }
+  async replyToUserRatings({ ratingId }, body) {
+    try {
+      const { message } = body
+      await RatingModel.findOneAndUpdate(
+        { _id: ratingId },
+        {
+          $addToSet: { replies: message },
+        }
+      );
+      return message;
+    } catch (error) {
+      throw error;
+    }
+  }
   async getAllRatings() {
     const projection = {
       restaurant: true,
@@ -38,10 +52,10 @@ class RatingService {
     let filterQuery = { restaurant: restaurant._id };
     let sorts = {};
     if (range) {
-      sorts = range === "negative" ?
-        { ...sorts, globalRating: 1 }
-        :
-        { ...sorts, globalRating: -1 };
+      sorts =
+        range === "negative"
+          ? { ...sorts, globalRating: 1 }
+          : { ...sorts, globalRating: -1 };
     }
 
     if (date) {
@@ -57,6 +71,7 @@ class RatingService {
       globalRating: true,
       updatedAt: true,
       createdAt: true,
+      replies: true,
     };
     try {
       if (date || range) {

@@ -54,7 +54,7 @@ class AuthService {
         idToken,
       });
       const { email_verified, email } = response.payload;
-      console.log(email)
+      console.log(email);
       if (email) {
         let user = await UserModel.findOne({ email });
         if (user) {

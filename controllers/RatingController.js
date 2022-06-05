@@ -12,6 +12,18 @@ const add = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const replyToUserRatings = (req, res, next) => {
+  new RatingService()
+    .replyToUserRatings(req.params, req.body)
+    .then((info) =>
+      res.status(200).json(success("RATING_REPLY", info, res.statusCode))
+    )
+    .catch((err) =>
+      res
+        .status(err.code || 500)
+        .json(error(err.status, err.code) || "internal error")
+    );
+};
 const update = (req, res, next) => {
   new RatingService()
     .updateRating(req.params, req.body)
@@ -105,4 +117,5 @@ module.exports = {
   getRatingInfos,
   getRestaurantRatings,
   removeRatings,
+  replyToUserRatings,
 };

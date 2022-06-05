@@ -250,8 +250,7 @@ class UserService {
         password.toString(),
         user.password
       );
-      if (!verifyIfPasswordTheSame)
-        throw new NotFoundError("password wrong!!");
+      if (!verifyIfPasswordTheSame) throw new NotFoundError("password wrong!!");
       return "access granted!";
     } catch (err) {
       throw err;

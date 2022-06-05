@@ -11,6 +11,7 @@ const {
   getRatingInfos,
   getRestaurantRatings,
   removeRatings,
+  replyToUserRatings,
 } = require("../controllers/RatingController");
 const { authorize, AUTH_ROLES } = require("../middlewares/auth");
 const { USER, ADMIN, RESTAURANT } = AUTH_ROLES;
@@ -40,4 +41,5 @@ router.get(
   authorize(RESTAURANT),
   catchMiddleware(getRestaurantRatings)
 );
+router.post("/replyToUserRatings/:ratingId", authorize(RESTAURANT), catchMiddleware(replyToUserRatings))
 module.exports = router;

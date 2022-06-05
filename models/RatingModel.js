@@ -13,6 +13,7 @@ var RatingSchema = new mongoose.Schema(
     comment: { type: String, required: true },
     userName: { type: String, required: false },
     user: { type: Schema.ObjectId, ref: "User", required: true },
+    replies: [{ type: String, required: false }],
   },
   { timestamps: true }
 );
