@@ -2,7 +2,7 @@ const RatingModel = require("../models/RatingModel");
 const restaurant = require("../models/RestaurantModel");
 const { AuthorizationError, NotFoundError } = require("../errors/appError");
 class RatingService {
-  constructor() {}
+  constructor() { }
   async Add(user, body) {
     try {
       let userData = body;
@@ -35,22 +35,21 @@ class RatingService {
   }
   async getRestaurantRatings({ restaurant, query }) {
     const { date, range } = query;
-    let sorts = null;
-    if (range) sorts = range === "negative" ? 1 : -1;
     let filterQuery = { restaurant: restaurant._id };
-    if (date) {
-      let today = new Date();
-      filterQuery =
-        date === "oldest"
-          ? { ...filterQuery, updatedAt: { $lte: today } }
-          : { ...filterQuery, updatedAt: { $gte: today } };
+    let sorts = {};
+    if (range) {
+      sorts = range === "negative" ?
+        { ...sorts, globalRating: 1 }
+        :
+        { ...sorts, globalRating: -1 };
     }
-    //if (range) {
-    // filterQuery =
-    //   range === "negative"
-    //     ? { ...filterQuery, globalRating: { $lte: 5 } }
-    //     : { ...filterQuery, globalRating: { $gte: 5 } };
-    //}
+
+    if (date) {
+      sorts =
+        date === "oldest"
+          ? { ...sorts, updatedAt: 1 }
+          : { ...sorts, updatedAt: -1 };
+    }
     const projection = {
       comment: true,
       detail: true,
@@ -60,13 +59,13 @@ class RatingService {
       createdAt: true,
     };
     try {
-      if (range) {
+      if (date || range) {
         const rating = await RatingModel.find(filterQuery, projection)
           .populate("user", {
             firstName: 1,
             lastName: 1,
           })
-          .sort({ globalRating: sorts });
+          .sort(sorts);
         return rating;
       }
       const rating = await RatingModel.find(filterQuery, projection).populate(
