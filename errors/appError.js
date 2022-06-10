@@ -8,6 +8,7 @@ const httpError = {
   UNAUTHORIZED: "UNAUTHORIZED",
   BAD_REQUEST: "BAD_REQUEST",
   UNIQUE_MEAL: "UNIQUE_MEAL",
+  UNAVAILABLE_FOR_PASSING_ORDERS: "UNAVAILABLE_FOR_PASSING_ORDERS"
 };
 class appError extends Error {
   constructor(status, code, message) {
@@ -75,6 +76,15 @@ class AuthorizationError extends appError {
     );
   }
 }
+class unavailableForPassingOrdersError extends appError {
+  constructor(message) {
+    super(
+      httpError.UNAVAILABLE_FOR_PASSING_ORDERS,
+      503,
+      message || "Restaurant unavailable for passing orders"
+    );
+  }
+}
 module.exports = {
   AuthorizationError,
   NotFoundError,
@@ -83,4 +93,5 @@ module.exports = {
   UniqueMealError,
   InternalError,
   BadRequestError,
+  unavailableForPassingOrdersError,
 };

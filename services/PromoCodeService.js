@@ -61,8 +61,12 @@ class PromoCodeService {
       throw error;
     }
   }
-  async updatePromoCodesInformation(body, promoCodeId) {
+  async updatePromoCodesInformation(body, promoCodeId, restaurant) {
     try {
+      body = { ...body, code: this.makeid() };
+      body = { ...body, restaurant: restaurant._id };
+      console.log(body);
+      console.log(promoCodeId);
       await PromoCodeModel.findOneAndUpdate({ _id: promoCodeId }, body);
       return PromoCodeModel.findById(promoCodeId);
     } catch (error) {

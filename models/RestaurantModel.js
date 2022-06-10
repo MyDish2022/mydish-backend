@@ -39,7 +39,11 @@ var RestaurantSchema = new mongoose.Schema(
       cuisine: { type: String, required: false },
       horaires: { type: String, required: false },
     },
-    access: [{ type: String, required: false }],
+    access: [
+      { type: String, required: false },
+      { type: String, required: false },
+      { type: String, required: false }
+    ],
     moreInfos: {
       security: { type: String, required: false },
       paymentMethods: [{ type: String, required: false }],
@@ -82,7 +86,10 @@ var RestaurantSchema = new mongoose.Schema(
     diatetic: [{ type: String, required: false }],
     specialty: [{ type: String, required: false }],
     reduction: { type: Number, required: false },
-    openingHours: [{ type: String, required: false }],
+    openingHours: [{ type: String, required: false },{ type: String, required: false } ],
+    unavailableForDelivery: { type: Boolean, required: false, default: true },
+    clotureServiceMorning: { type: Boolean, required: false, default: true },
+    clotureServiceNight: { type: Boolean, required: false, default: true },
     avgPrice: [{ type: Number, required: false }],
     abonnement: {
       type: String,

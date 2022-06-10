@@ -50,7 +50,11 @@ const addPromoCode = (req, res, next) => {
 };
 const updatePromoCode = (req, res, next) => {
   new PromoCodeService()
-    .updatePromoCodesInformation(req.body, req.params.promoCodeId)
+    .updatePromoCodesInformation(
+      req.body,
+      req.params.promoCodeId,
+      req.restaurant
+    )
     .then((info) =>
       res.status(200).json(success("UPDATE_PROMO_CODE", info, res.statusCode))
     )

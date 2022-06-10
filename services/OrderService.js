@@ -9,20 +9,24 @@ const StripeService = require("./StripeService");
 const nodemailer = require("nodemailer");
 const cartSchema = require("../models/CartModel");
 const BoissonModel = require("../models/BoissonModel");
+const restuarantModel = require("../models/RestaurantModel");
 const bcrypt = require("bcryptjs");
 const {
   AuthorizationError,
   NotFoundError,
   InternalError,
+  unavailableForPassingOrdersError
 } = require("../errors/appError");
 const { sign } = require("jsonwebtoken");
 const moment = require("moment");
 const format = "HH:mm:ss";
 class OrderService {
-  constructor() {}
+  constructor() { }
   async passOrder(user, body) {
     const { panierId, status, restaurantId, paymentMethod } = body;
     try {
+      const restaurantChecker = await restuarantModel.findOne({ _id: restaurantId }).lean();
+      if (restaurantChecker && restaurantChecker.unavailableForDelivery) throw new unavailableForPassingOrdersError("restaurant passing orders service is unvailable");
       const cartItems = await cartSchema
         .findOne({ _id: panierId })
         .populate("promoCode", "code")
@@ -72,7 +76,7 @@ class OrderService {
       });
 
       // send mail with defined transport object
-      let info = await transporter.sendMail({
+      /*let info = await transporter.sendMail({
         from: process.env.MAIL_GMAIL, // sender address
         to: "mohamed.derbali@esprit.tn", // list of receivers
         subject: "Order passé avec succées", // Subject line
@@ -129,7 +133,7 @@ class OrderService {
             cid: "bee",
           },
         ],
-      });
+      });*/
       return { order: orderModel, paymentIntent: pay };
     } catch (error) {
       console.log(error);
@@ -160,7 +164,10 @@ class OrderService {
   };
   async passOrderByRestaurant(connectedRestaurant, body) {
     try {
+      if (connectedRestaurant && connectedRestaurant.unavailableForDelivery) throw new unavailableForPassingOrdersError("restaurant passing orders service is unvailable");
       const { date, heure } = body;
+      // if (connectedRestaurant && connectedRestaurant.clotureServiceMorning) throw new unavailableForPassingOrdersError("restaurant passing orders service is unvailable");
+      // if (connectedRestaurant && connectedRestaurant.clotureServiceNight) throw new unavailableForPassingOrdersError("restaurant passing orders service is unvailable");
       console.log(date, heure);
       let orderedForDate = new Date(`${date}T${heure}`);
       //orderedForDate.setHours(orderedForDate.getHours()+2)
@@ -269,7 +276,7 @@ class OrderService {
       });
 
       // send mail with defined transport object
-      let info = await transporter.sendMail({
+     /* let info = await transporter.sendMail({
         from: process.env.MAIL_GMAIL, // sender address
         to: "mohamed.derbali@esprit.tn", // list of receivers
         subject: "Order passé avec succées", // Subject line
@@ -326,12 +333,11 @@ class OrderService {
             cid: "bee",
           },
         ],
-      });
+      });*/
       //console.log(renderedSchema);
       return renderedSchema;
     } catch (err) {
-      // throw err;
-      console.log(err);
+       throw err;
     }
   }
   async notifOrder(connectedRestaurant) {
@@ -485,8 +491,8 @@ class OrderService {
       await Promise.all(promises);
       return dateOrder
         ? weeklyOrders.filter(
-            (weeklyOrder) => weeklyOrder.OrderOnDate == dateOrder
-          )
+          (weeklyOrder) => weeklyOrder.OrderOnDate == dateOrder
+        )
         : weeklyOrders;
     } catch (error) {
       console.log(error);

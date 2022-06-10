@@ -27,6 +27,7 @@ router.get(
 );
 router.patch(
   "/updateInfoPromocode/:promoCodeId",
+  authorize(RESTAURANT),
   catchMiddleware(updatePromoCode)
 );
 router.post(
