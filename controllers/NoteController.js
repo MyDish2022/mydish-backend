@@ -38,7 +38,7 @@ const getAllNotes = (req, res, next) => {
 };
 const deleteNoteById = (req, res, next) => {
   new NoteService()
-    .deleteNoteById(req.params)
+    .deleteNoteById(req.body)
     .then((info) =>
       res.status(200).json(success("REMOVE_NOTE", info, res.statusCode))
     )

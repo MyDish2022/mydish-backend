@@ -40,11 +40,12 @@ class NoteService {
       throw error;
     }
   }
-  async deleteNoteById({ noteId }) {
+  async deleteNoteById({notesId, servicesId}) {
+    console.log(notesId, servicesId)
     try {
-      const fetchNote = await NoteModel.findOne({ _id: noteId }).lean();
+      const fetchNote = await NoteModel.findOne({ _id: notesId }).lean();
       if (!fetchNote) throw new NotFoundError("Note id does not exist !!!");
-      await NoteModel.findByIdAndDelete(noteId);
+      await NoteModel.updateOne( { _id: notesId }, { $pull: { service: servicesId } } ).lean();
       return "note deleted successfully!";
     } catch (err) {
       throw err;

@@ -24,8 +24,8 @@ router.get(
   authorize(ADMIN, RESTAURANT),
   catchMiddleware(getAllNotes)
 );
-router.delete(
-  "/deleteNoteById/:noteId",
+router.put(
+  "/deleteNoteById",
   authorize(RESTAURANT),
   catchMiddleware(deleteNoteById)
 );
