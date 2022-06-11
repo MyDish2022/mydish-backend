@@ -8,6 +8,7 @@ const {
   getAllPlats,
   addPlatRestaurant,
   getAllPlatsByRestaurant,
+  makePdfOfMeals
 } = require("../controllers/PlatController");
 const { authorize, AUTH_ROLES } = require("../middlewares/auth");
 const { ADMIN, USER, RESTAURANT } = AUTH_ROLES;
@@ -28,6 +29,7 @@ router.put(
   catchMiddleware(updatePlat)
 );
 router.get("/getAllPlats", catchMiddleware(getAllPlats));
+router.get("/makePdfOfMeals", authorize(RESTAURANT), catchMiddleware(makePdfOfMeals));
 router.get(
   "/getAllPlatsByRestaurant/:restaurantId",
   catchMiddleware(getAllPlatsByRestaurant)

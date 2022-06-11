@@ -37,6 +37,8 @@
     "nodemailer": "^6.7.0",
     "nodemon": "^2.0.14",
     "pm2": "^5.2.0",
+    "puppeteer": "^14.3.0",
+    "puppeteer-core": "^14.3.0",
     "stripe": "^8.181.0",
     "twilio": "^3.69.0",
     "use-shopping-cart": "2.1.0",

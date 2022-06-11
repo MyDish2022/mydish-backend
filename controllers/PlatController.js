@@ -12,6 +12,20 @@ const getAllPlats = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const makePdfOfMeals = (req, res, next) => {
+  new PlatService()
+    .makePdfOfMeals(req.query, req.restaurant)
+    .then((info) =>{
+      res.contentType("application/pdf");
+      res.send(info);
+    }
+    )
+    .catch((err) =>
+      res
+        .status(err.code || 500)
+        .json(error(err.status, err.code) || "internal error")
+    );
+};
 const getAllPlatsByRestaurant = (req, res, next) => {
   new PlatService()
     .getAllPlatsByRestaurant(req.params)
@@ -82,4 +96,5 @@ module.exports = {
   getAllPlats,
   getAllPlatsByRestaurant,
   addPlatRestaurant,
+  makePdfOfMeals
 };
