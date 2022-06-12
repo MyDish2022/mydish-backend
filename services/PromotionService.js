@@ -38,15 +38,14 @@ class PromotionService {
   }
   async updatePromotion(body, { promotionId }) {
     try {
-      await PromotionModel.findOneAndUpdate(
+      const updated = await PromotionModel.findOneAndUpdate(
         { _id: promotionId },
         {
           $set: body,
         },
         { returnOriginal: false }
       ).lean();
-      const newService = await PromotionModel.findById(promotionId).lean();
-      return newService;
+      return updated;
     } catch (error) {
       throw error;
     }

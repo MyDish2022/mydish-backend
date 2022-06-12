@@ -11,7 +11,7 @@ const {
 const UserModel = require("../models/UserModel");
 const MenuModel = require("../models/MenuModel");
 class ProductService {
-  constructor() {}
+  constructor() { }
   async addMenu(body, restaurantId) {
     try {
       let data = {
@@ -131,11 +131,11 @@ class ProductService {
         .populate("plats boissons restaurantId")
         .lean();
       if (sort && sort.status) {
-        product.sort();
         if (sort.status != "desc") {
-          console.log("asba");
-          product.reverse();
+          return product.filter(el => el.status != "dépublié")
         }
+        return product.filter(el => el.status == "dépublié")
+        
       }
       return product;
     } catch (error) {
@@ -171,8 +171,8 @@ class ProductService {
     let checkIfExist = await MenuModel.findOne({ _id: menuId }).lean();
     if (!checkIfExist) throw new NotFoundError("Menu not found!");
     try {
-      await MenuModel.findByIdAndRemove({ _id: menuId });
-      return { message: "Menu Removed successfully" };
+      const updated = await MenuModel.findOneAndUpdate({ _id: menuId }, { status: "dépublié" }, { returnOriginal: false });
+      return updated;
     } catch (error) {
       console.log(error);
       throw error;

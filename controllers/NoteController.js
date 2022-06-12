@@ -12,6 +12,18 @@ const addNoteToService = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const modifyNotesInfos =(req, res, next) => {
+  new NoteService()
+    .modifyNotesInfos(req.params, req.body)
+    .then((info) =>
+      res.status(200).json(success("NOTE_CREATE", info, res.statusCode))
+    )
+    .catch((err) =>
+      res
+        .status(err.code || 500)
+        .json(error(err.status, err.code) || "internal error")
+    );
+};
 const getNoteByServiceId = (req, res, next) => {
   new NoteService()
     .getNoteByServiceId(req.params)
@@ -53,4 +65,5 @@ module.exports = {
   getNoteByServiceId,
   deleteNoteById,
   getAllNotes,
+  modifyNotesInfos,
 };

@@ -8,7 +8,7 @@ const {
 } = require("../errors/appError");
 const { findOneAndUpdate } = require("../models/ServiceModel");
 class ServiceService {
-  constructor() {}
+  constructor() { }
   async addService(body) {
     try {
       const service = await ServiceModel.findOne({ nom: body.nom }).lean();
@@ -39,9 +39,19 @@ class ServiceService {
       console.log(error);
     }
   }
-  async getAllServices() {
+  async getAllServices({ status }) {
     try {
-      const services = await ServiceModel.find({}).lean();
+      let filterQuery = {}
+      if (status == "terminated") {
+        filterQuery = {
+          ...filterQuery, status: "terminated"
+        }
+      } else {
+        filterQuery = {
+          ...filterQuery, status: {$ne : "terminated" }
+        }
+      }
+      const services = await ServiceModel.find(filterQuery).lean();
       return services;
     } catch (error) {
       throw error;

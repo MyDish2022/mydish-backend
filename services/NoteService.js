@@ -7,7 +7,7 @@ const {
   InternalError,
 } = require("../errors/appError");
 class NoteService {
-  constructor() {}
+  constructor() { }
   async addNoteToService(body) {
     try {
       const registeredNote = new NoteModel(body);
@@ -40,13 +40,32 @@ class NoteService {
       throw error;
     }
   }
-  async deleteNoteById({notesId, servicesId}) {
+  async deleteNoteById({ notesId, servicesId }) {
     console.log(notesId, servicesId)
     try {
       const fetchNote = await NoteModel.findOne({ _id: notesId }).lean();
       if (!fetchNote) throw new NotFoundError("Note id does not exist !!!");
-      await NoteModel.updateOne( { _id: notesId }, { $pull: { service: servicesId } } ).lean();
+      await NoteModel.updateOne({ _id: notesId }, { $pull: { service: servicesId } }).lean();
       return "note deleted successfully!";
+    } catch (err) {
+      throw err;
+    }
+  }
+  async modifyNotesInfos({ noteId }, body) {
+    try {
+      let objNote = {};
+      if (body.title) {
+        objNote = { ...objNote, title: body.title };
+      }
+      if (body.details) {
+        objNote = { ...objNote, details: body.details };
+      }
+      if (body.isImportant) {
+        objNote = { ...objNote, isImportant: body.isImportant };
+      }
+      const updatedNote = await NoteModel.findOneAndUpdate({ _id: noteId }, objNote, { returnOriginal: false }).lean();
+      console.log(updatedNote)
+      return updatedNote;
     } catch (err) {
       throw err;
     }

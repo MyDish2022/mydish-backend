@@ -2,7 +2,7 @@ const ServiceService = require("../services/ServiceService");
 const { success, error } = require("../middlewares/response");
 const getAllServices = (req, res, next) => {
   new ServiceService()
-    .getAllServices()
+    .getAllServices(req.query)
     .then((info) =>
       res.status(200).json(success("SERVICES_LIST", info, res.statusCode))
     )

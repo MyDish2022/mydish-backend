@@ -24,6 +24,7 @@ var ServiceSchema = new mongoose.Schema(
       start: { type: String, required: false },
       end: { type: String, required: false },
     },
+    status: { type: String, required: false, default: "inProgress"},
     lastReservationHour: { type: String, required: false },
     serviceSpecifity: [
       {

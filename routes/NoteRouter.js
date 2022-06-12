@@ -8,6 +8,7 @@ const {
   getNoteByServiceId,
   getAllNotes,
   deleteNoteById,
+  modifyNotesInfos
 } = require("../controllers/NoteController");
 router.post(
   "/addNoteToService",
@@ -29,4 +30,7 @@ router.put(
   authorize(RESTAURANT),
   catchMiddleware(deleteNoteById)
 );
+router.put("/modifyNotesInfos/:noteId",
+authorize(RESTAURANT),
+catchMiddleware(modifyNotesInfos))
 module.exports = router;
