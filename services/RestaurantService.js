@@ -14,6 +14,8 @@ const BoissonModel = require("../models/BoissonModel");
 const { AUTH_ROLES } = require("../middlewares/auth");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
+const ServiceModel = require("../models/ServiceModel");
+const SectionModel = require("../models/SectionModel");
 class RestaurantService {
   constructor() {}
 
@@ -199,6 +201,14 @@ class RestaurantService {
           $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000),
         },
       }).lean();
+      return restaurants;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async restaurantPaymentMethods({restaurantId}) {
+    try {
+      let restaurants = await RestaurantModel.find({_id: restaurantId}, {moreInfos: 1}).lean();
       return restaurants;
     } catch (error) {
       throw error;
@@ -432,9 +442,21 @@ class RestaurantService {
   }*/
   async restaurantDetails(user, { restaurantId }) {
     try {
+      let projection = {
+        generalInfos: 0,
+        login: 0,
+        password: 0,
+        menus: 0,
+        services: 0,
+        access: 0,
+        moreInfos: 0,
+        facturation: 0,
+        abonnement: 0,
+        imagesPresentations:0
+      }
       let restaurant = await RestaurantModel.findOne(
         { _id: restaurantId },
-        { menus: 0 }
+        projection
       )
         .populate(
           "menusJours",
@@ -451,13 +473,22 @@ class RestaurantService {
           restaurantId: restaurant._id,
         }).lean();
         let boissons = await BoissonModel.find({}).lean();
+        let sections = await SectionModel.find({}).lean();
+        let sectionNames = sections.map(el=>el.name)
+        console.log(sectionNames);
+        if(sectionNames){
+          sectionNames.map(item => {
+            restaurant = {
+              ...restaurant,
+              [item]: null,
+            };
+          }) 
+        }
         restaurant = {
           ...restaurant,
-          entrée: null,
-          deserts: null,
-          plats: null,
           boissons: boissons || null,
-        };
+        };    
+            
         //plats numbers in cart
         let myCart = await CartModel.findOne({ userSession: user._id }).lean();
         const promises =

@@ -247,6 +247,18 @@ const GetRestaurantNotifs = (req, res, next) => {
         .json(error(err.status, err.code) || "internal error")
     );
 };
+const restaurantPaymentMethods = (req, res, next) => {
+  new RestaurantService()
+    .restaurantPaymentMethods(req.params)
+    .then((info) =>
+      res.status(200).json(success("RESTAURANT_PAYMENT_METHODS", info, res.statusCode))
+    )
+    .catch((err) =>
+      res
+        .status(err.code || 500)
+        .json(error(err.status, err.code) || "internal error")
+    );
+};
 const updateCordinates = (req, res, next) => {
   new RestaurantService()
     .updateCordinates(req.body, req.restaurant._id)
@@ -284,4 +296,5 @@ module.exports = {
   restaurantNews,
   resetPassword,
   myRestaurantDetails,
+  restaurantPaymentMethods
 };

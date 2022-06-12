@@ -33,6 +33,7 @@ const {
   resetPassword,
   myRestaurantDetails,
   uploadImage,
+  restaurantPaymentMethods
 } = require("../controllers/RestaurantController");
 
 var router = express.Router();
@@ -99,4 +100,5 @@ router.get(
   authorize(RESTAURANT),
   catchMiddleware(myRestaurantDetails)
 );
+router.get("/restaurantPaymentMethods/:restaurantId", catchMiddleware(restaurantPaymentMethods))
 module.exports = router;
