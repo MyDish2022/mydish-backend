@@ -70,13 +70,14 @@ class ServiceService {
   }
   async updateService(body, { serviceId }) {
     try {
-      await ServiceModel.findOneAndUpdate(
+      const terminatedService = await ServiceModel.findOneAndUpdate(
         { _id: serviceId },
         {
           $set: body,
         },
         { returnOriginal: false }
       ).lean();
+      console.log(terminatedService)
       const newService = await ServiceModel.findById(serviceId).lean();
       return newService;
     } catch (error) {

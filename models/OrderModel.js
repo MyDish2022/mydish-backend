@@ -22,6 +22,11 @@ var OrderSchema = new mongoose.Schema(
       ref: "PromoCode",
       required: false,
     },
+    service: {
+      type: Schema.ObjectId,
+      ref: "Service",
+      required: false,
+    },
     status: { type: String, required: false, default: "new" },
     isCancelled: { type: Boolean, required: false, default: false },
     isPaid: { type: Boolean, required: false, default: false },

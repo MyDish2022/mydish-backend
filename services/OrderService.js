@@ -245,6 +245,7 @@ class OrderService {
           ? promoCodeInformations.discountAmount
           : 0,
         restaurant: connectedRestaurant._id,
+        service: serviceCheck._id
       };
 
       let orderModel = new Order(orderSchemaToPass);
@@ -575,11 +576,7 @@ class OrderService {
         .populate("orderCreator", "firstName lastName")
         .lean();
       const promise = orderList.map(async (ord) => {
-        let hour = ord.orderedForDate.getUTCHours() + 2;
-        if (time === "morning" && hour >= 12 && hour <= 16) {
-          filteredOrders.push(ord);
-        }
-        if (time === "night" && hour >= 18 && hour <= 24) {
+        if (time == ord.service) {
           filteredOrders.push(ord);
         }
       });
