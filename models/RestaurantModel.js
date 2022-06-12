@@ -88,8 +88,6 @@ var RestaurantSchema = new mongoose.Schema(
     reduction: { type: Number, required: false },
     openingHours: [{ type: String, required: false },{ type: String, required: false } ],
     unavailableForDelivery: { type: Boolean, required: false, default: true },
-    clotureServiceMorning: { type: Boolean, required: false, default: true },
-    clotureServiceNight: { type: Boolean, required: false, default: true },
     avgPrice: [{ type: Number, required: false }],
     abonnement: {
       type: String,

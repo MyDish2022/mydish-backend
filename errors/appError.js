@@ -8,7 +8,8 @@ const httpError = {
   UNAUTHORIZED: "UNAUTHORIZED",
   BAD_REQUEST: "BAD_REQUEST",
   UNIQUE_MEAL: "UNIQUE_MEAL",
-  UNAVAILABLE_FOR_PASSING_ORDERS: "UNAVAILABLE_FOR_PASSING_ORDERS"
+  UNAVAILABLE_FOR_PASSING_ORDERS: "UNAVAILABLE_FOR_PASSING_ORDERS",
+  SERVICE_CLOSED_ERROR: "SERVICE_CLOSED_ERROR"
 };
 class appError extends Error {
   constructor(status, code, message) {
@@ -85,6 +86,15 @@ class unavailableForPassingOrdersError extends appError {
     );
   }
 }
+class ServiceClosedError extends appError {
+  constructor(message) {
+    super(
+      httpError.SERVICE_CLOSED_ERROR,
+      504,
+      message || "Service closed you cant pass an order"
+    );
+  }
+}
 module.exports = {
   AuthorizationError,
   NotFoundError,
@@ -94,4 +104,5 @@ module.exports = {
   InternalError,
   BadRequestError,
   unavailableForPassingOrdersError,
+  ServiceClosedError,
 };

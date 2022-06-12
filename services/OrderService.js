@@ -15,7 +15,8 @@ const {
   AuthorizationError,
   NotFoundError,
   InternalError,
-  unavailableForPassingOrdersError
+  unavailableForPassingOrdersError,
+  ServiceClosedError
 } = require("../errors/appError");
 const { sign } = require("jsonwebtoken");
 const moment = require("moment");
@@ -165,10 +166,11 @@ class OrderService {
   async passOrderByRestaurant(connectedRestaurant, body) {
     try {
       if (connectedRestaurant && connectedRestaurant.unavailableForDelivery) throw new unavailableForPassingOrdersError("restaurant passing orders service is unvailable");
-      const { date, heure } = body;
-      // if (connectedRestaurant && connectedRestaurant.clotureServiceMorning) throw new unavailableForPassingOrdersError("restaurant passing orders service is unvailable");
-      // if (connectedRestaurant && connectedRestaurant.clotureServiceNight) throw new unavailableForPassingOrdersError("restaurant passing orders service is unvailable");
-      console.log(date, heure);
+      const { date, heure, service } = body;
+      let serviceCheck = await serviceModel.findOne({nom: service}).lean();
+      if(serviceCheck.status == "terminated") {
+        throw new ServiceClosedError("service closed you cant pass an order");
+      }
       let orderedForDate = new Date(`${date}T${heure}`);
       //orderedForDate.setHours(orderedForDate.getHours()+2)
       let savedUser = null;
